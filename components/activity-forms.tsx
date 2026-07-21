@@ -129,6 +129,16 @@ export function ActivityForms({ formType = 'general' }: ActivityFormsProps) {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+          defaultValue=""
+        />
+
         {config.fields.map((field) => (
           <div key={field.name} className={field.type === 'textarea' ? 'sm:col-span-2' : 'sm:col-span-1'}>
             <label htmlFor={field.name} className="mb-1.5 block text-sm font-medium text-foreground">

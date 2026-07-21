@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/section-heading'
 import { CTASection } from '@/components/cta-section'
 import { ActivityForms } from '@/components/activity-forms'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
+import { communityEvents } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'Community & Events',
@@ -148,38 +149,31 @@ export default function CommunityPage() {
           title="Upcoming and recurring events"
           description="Save your spot and come build, learn, and connect with the community."
         />
-        <RevealStagger className="mt-12 grid gap-4 sm:grid-cols-2">
-          {upcoming.map((event) => (
-            <RevealItem key={event.title}>
-              <article className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                    {event.type}
-                  </span>
-                  <h3 className="mt-2 text-lg font-semibold text-foreground">
+        <RevealStagger className="mt-12 grid gap-6 md:grid-cols-3">
+          {communityEvents.map((event) => {
+            const Icon = event.icon
+            return (
+              <Link
+                key={event.id}
+                href={`/community/${event.id}`}
+                className="group"
+              >
+                <RevealItem className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                  <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
                     {event.title}
                   </h3>
-                  <div className="mt-2 flex flex-wrap gap-4 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar className="size-4" />
-                      {event.date}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="size-4" />
-                      {event.location}
-                    </span>
+                  <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
+                  <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary">
+                    <span>{event.date}</span>
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>
-                </div>
-                <Link
-                  href="/contact"
-                  className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-                >
-                  Register
-                  <ArrowRight className="size-4" />
-                </Link>
-              </article>
-            </RevealItem>
-          ))}
+                </RevealItem>
+              </Link>
+            )
+          })}
         </RevealStagger>
       </section>
 

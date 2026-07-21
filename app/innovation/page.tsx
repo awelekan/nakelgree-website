@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
 import {
   Wifi,
   Armchair,
@@ -15,6 +17,7 @@ import { SectionHeading } from '@/components/section-heading'
 import { CTASection } from '@/components/cta-section'
 import { ActivityForms } from '@/components/activity-forms'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
+import { innovationEvents } from '@/lib/data'
 
 export const metadata: Metadata = {
   title: 'Innovation Hub',
@@ -169,6 +172,43 @@ export default function InnovationPage() {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="mb-12">
+          <SectionHeading
+            eyebrow="Events & initiatives"
+            title="Meet us at upcoming events"
+            description="Discover hands-on hackathons, startup accelerators, and coworking opportunities to grow with our community."
+          />
+        </div>
+
+        <RevealStagger className="grid gap-6 md:grid-cols-3">
+          {innovationEvents.map((event) => {
+            const Icon = event.icon
+            return (
+              <Link
+                key={event.id}
+                href={`/innovation/${event.id}`}
+                className="group"
+              >
+                <RevealItem className="h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                  <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="size-6" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
+                    {event.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{event.description}</p>
+                  <div className="mt-4 flex items-center gap-2 text-sm font-medium text-primary">
+                    <span>{event.date}</span>
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </RevealItem>
+              </Link>
+            )
+          })}
+        </RevealStagger>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">

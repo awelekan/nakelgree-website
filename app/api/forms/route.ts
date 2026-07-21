@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { checkAntiBotProtection } from '@/lib/anti-bot'
 import { saveFormSubmission } from '@/lib/form-storage'
+import { sendConfirmationEmail } from '@/lib/email'
 
 export async function POST(request: Request) {
   try {
@@ -15,6 +16,18 @@ export async function POST(request: Request) {
     }
 
     const submission = await saveFormSubmission(payload)
+
+    // Send confirmation email asynchronously (don't wait for it)
+    if (submission.email && submission.name) {
+      sendConfirmationEmail({
+        recipientName: submission.name,
+        recipientEmail: submission.email,
+        formType: submission.formType,
+        submission,
+      }).catch((error) => {
+        console.error('Failed to send confirmation email for submission', submission.id, error)
+      })
+    }
 
     return NextResponse.json({ success: true, submission })
   } catch (error) {

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { Check, Clock } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 import { SectionHeading } from '@/components/section-heading'
@@ -62,58 +63,77 @@ export default function ProgramsPage() {
 
         <RevealStagger className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {programs.map((program) => (
-            <RevealItem key={program.title}>
-              <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                    <program.icon className="size-6" />
+            <RevealItem key={program.id}>
+              <Link href={`/programs/${program.id}`} className="group h-full">
+                <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <program.icon className="size-6" />
+                    </div>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+                      <Clock className="size-3" />
+                      {program.duration}
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-                    <Clock className="size-3" />
-                    {program.duration}
-                  </span>
-                </div>
 
-                <h3 className="mt-5 text-lg font-semibold text-foreground">
-                  {program.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {program.description}
-                </p>
-
-                <div className="mt-5">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
-                    Skills covered
+                  <h3 className="mt-5 text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {program.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {program.description}
                   </p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {program.skills.map((skill) => (
-                      <span
-                        key={skill}
-                        className="rounded-full border border-border bg-background px-2.5 py-1 text-xs text-muted-foreground"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+
+                  <div className="mt-5">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
+                      Skills covered
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {program.skills.slice(0, 3).map((skill) => (
+                        <span
+                          key={skill}
+                          className="rounded-full border border-border bg-background px-2.5 py-1 text-xs text-muted-foreground"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                      {program.skills.length > 3 && (
+                        <span className="rounded-full border border-border bg-background px-2.5 py-1 text-xs text-muted-foreground">
+                          +{program.skills.length - 3} more
+                        </span>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <div className="mt-5 border-t border-border pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
-                    Learning format
-                  </p>
-                  <ul className="mt-2 space-y-1.5">
-                    {program.format.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
-                      >
-                        <Check className="size-4 text-primary" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+                  <div className="mt-5 border-t border-border pt-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-foreground">
+                      Learning format
+                    </p>
+                    <ul className="mt-2 space-y-1.5">
+                      {program.format.slice(0, 2).map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-center gap-2 text-sm text-muted-foreground"
+                        >
+                          <Check className="size-4 text-primary" />
+                          {item}
+                        </li>
+                      ))}
+                      {program.format.length > 2 && (
+                        <li className="text-xs text-primary font-medium">+{program.format.length - 2} more</li>
+                      )}
+                    </ul>
+                  </div>
+
+                  <div className="mt-5 flex flex-1 flex-col justify-end">
+                    <div className="flex items-center gap-2 font-semibold text-primary group-hover:gap-3 transition-all">
+                      View details
+                      <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </article>
+              </Link>
             </RevealItem>
           ))}
         </RevealStagger>

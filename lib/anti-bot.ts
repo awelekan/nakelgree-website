@@ -24,14 +24,14 @@ export function checkAntiBotProtection(payload: Record<string, string | undefine
   const startTime = Number(payload._startTime || '0')
   if (startTime > 0) {
     const elapsedMs = Date.now() - startTime
-    if (elapsedMs < 2500) {
-      return { allowed: false, reason: 'Your request appeared to be automated.' }
+    if (elapsedMs < 300) {
+      return { allowed: false, reason: 'Please wait a moment and try again.' }
     }
   }
 
   const message = String(payload.message || '').trim()
-  if (message.length > 0 && message.length < 8) {
-    return { allowed: false, reason: 'Please provide a more detailed message.' }
+  if (message.length > 0 && message.length < 3) {
+    return { allowed: false, reason: 'Please provide a bit more detail in your message.' }
   }
 
   const email = String(payload.email || '').trim().toLowerCase()

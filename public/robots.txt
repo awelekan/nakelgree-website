@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nakelgreen.com.ng/sitemap.xml
+Host: nakelgreen.com.ng

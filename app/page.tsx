@@ -22,13 +22,13 @@ export default function HomePage() {
           <div className="grid gap-8 md:grid-cols-2 md:items-center">
             <div>
               <div className="inline-flex rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
-                Business Management
+                Service Based Management System App
               </div>
               <h2 className="mt-4 text-3xl font-bold text-foreground sm:text-4xl">
-                Streamline Your Business with Nakel POS
+                Streamline Your Business with SBMS
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                From quote to payment in one unified platform. Manage clients, create proposals, track work, and analyze finances—all in one place.
+                Access the app at https://sbms.nakelgreen.com.ng. Manage quotes, bookings, projects, invoices, and payments in one unified platform.
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center gap-3 text-muted-foreground">

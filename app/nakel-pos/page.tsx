@@ -7,9 +7,9 @@ import { CTASection } from '@/components/cta-section'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
 
 export const metadata: Metadata = {
-  title: 'Nakel POS - Business Management Software',
+  title: 'Service Based Management System App',
   description:
-    'Nakel POS is a comprehensive business management platform for quotes, invoices, bookings, payments, and financial reporting. Streamline your operations from proposal to payment.',
+    'The Service Based Management System App centralizes quotes, projects, invoices, payments, and financial reporting for service businesses. Access it at https://sbms.nakelgreen.com.ng.',
 }
 
 const features = [
@@ -55,7 +55,7 @@ const getStartedSteps = [
   {
     number: '01',
     title: 'Sign In',
-    description: 'Access your Nakel POS account and explore the dashboard.',
+    description: 'Access your SBMS account and explore the dashboard.',
   },
   {
     number: '02',
@@ -99,7 +99,7 @@ const docSections = [
     icon: Users,
     title: 'Training Program',
     description:
-      'Structured learning path with video outlines, hands-on exercises, quizzes, and certification. Become a Nakel POS expert.',
+      'Structured learning path with video outlines, hands-on exercises, quizzes, and certification. Become an SBMS expert.',
     href: '/nakel-pos/training',
     label: 'Start Training',
   },
@@ -109,9 +109,9 @@ export default function NakelPOSPage() {
   return (
     <>
       <PageHero
-        eyebrow="Nakel POS"
-        title="Business Management Made Simple"
-        description="Quote to payment. Clients to invoices. Financial insights to decisions. Nakel POS streamlines your entire business workflow in one intuitive platform."
+        eyebrow="SBMS App"
+        title="Service Based Management System"
+        description="Quote to payment, single-client bookings, and multi-client projects all in one central app. Access it at https://sbms.nakelgreen.com.ng."
       />
 
       {/* Key Features */}
@@ -150,7 +150,7 @@ export default function NakelPOSPage() {
           <SectionHeading
             eyebrow="Simple Workflow"
             title="From idea to payment in 5 steps"
-            description="The Nakel POS workflow is designed to be fast, intuitive, and complete."
+            description="The SBMS workflow is designed to be fast, intuitive, and complete for bookings and projects."
           />
           <RevealStagger className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
             {getStartedSteps.map((step) => (
@@ -212,7 +212,7 @@ export default function NakelPOSPage() {
             <Reveal>
               <div>
                 <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
-                  Why businesses choose Nakel POS
+                  Why businesses choose SBMS
                 </h2>
                 <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
                   Built for African businesses who want simplicity, reliability, and control over their operations.
@@ -222,9 +222,9 @@ export default function NakelPOSPage() {
                     'Intuitive interface — no training required',
                     'Complete financial tracking and reporting',
                     'Automatic invoice and payment management',
+                    'Multi-client projects and single-client bookings',
                     'Real-time business insights and dashboards',
                     'Secure, encrypted data with daily backups',
-                    'Affordable and scalable for any business size',
                   ].map((benefit) => (
                     <li
                       key={benefit}
@@ -247,7 +247,7 @@ export default function NakelPOSPage() {
                       For Entrepreneurs
                     </p>
                     <p className="mt-2 text-muted-foreground">
-                      Manage clients, quotes, and payments without hiring an accountant.
+                      Manage clients, quotes, and payments simplifying accounting.
                     </p>
                   </div>
                   <div>
@@ -277,7 +277,7 @@ export default function NakelPOSPage() {
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <SectionHeading
           eyebrow="Frequently Asked"
-          title="Common questions about Nakel POS"
+          title="Common questions about SBMS"
         />
         <RevealStagger className="mt-12 grid gap-6 md:grid-cols-2">
           {[

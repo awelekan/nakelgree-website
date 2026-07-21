@@ -6,8 +6,8 @@ import { SectionHeading } from '@/components/section-heading'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
 
 export const metadata: Metadata = {
-  title: 'Nakel POS - Quick Start Guide',
-  description: 'Get up and running with Nakel POS in 30 minutes. Step-by-step guide for your first quote, booking, and payment.',
+  title: 'Service Based Management System App - Quick Start Guide',
+  description: 'Get up and running with the Service Based Management System App in 30 minutes. Step-by-step guide for your first quote, booking, project, and payment workflow.',
 }
 
 export default function QuickStartPage() {
@@ -20,7 +20,7 @@ export default function QuickStartPage() {
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
             <ArrowLeft className="size-4" />
-            Back to Nakel POS
+            Back to SBMS
           </Link>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function QuickStartPage() {
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-foreground">Login & Explore the Dashboard</h2>
               <p className="mt-3 text-muted-foreground">
-                Open Nakel POS in your browser and sign in with your credentials. You'll see the Dashboard with business metrics, shortcuts to create quotes and bookings, and a financial overview.
+                Open the Service Based Management System App at https://sbms.nakelgreen.com.ng and sign in with your credentials. You'll land on the dashboard with business metrics, shortcuts to create quotes, bookings, projects, and a financial overview.
               </p>
               <div className="mt-4 rounded-xl border border-border bg-card p-4">
                 <p className="text-sm font-mono">📍 Main areas: Sidebar (navigation), Header (profile), Main workspace (content)</p>
@@ -109,7 +109,7 @@ export default function QuickStartPage() {
             <div className="flex-1">
               <h2 className="text-2xl font-bold text-foreground">Create Your First Quote</h2>
               <p className="mt-3 text-muted-foreground">
-                Now build a quote using the client and services you just created.
+                Now build a quote using the client and services you just created. For multi-client work, use the Projects module so a quote can include two or more clients as a single project scope.
               </p>
               <div className="mt-4 space-y-2 rounded-xl border border-border bg-card p-4">
                 <p className="font-semibold text-sm text-foreground">Steps:</p>
@@ -215,7 +215,7 @@ export default function QuickStartPage() {
             <div className="rounded-xl border border-border bg-card p-4">
               <p className="font-semibold text-foreground">Add Real Data</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Create your actual clients and services. Start using Nakel POS for real work.
+                Create your actual clients and services. Start using the SBMS App for real work.
               </p>
             </div>
             <div className="rounded-xl border border-border bg-card p-4">
@@ -231,7 +231,7 @@ export default function QuickStartPage() {
         <div className="mt-16 rounded-2xl border border-border bg-card p-8 text-center">
           <h3 className="text-xl font-bold text-foreground">Want to learn more?</h3>
           <p className="mt-2 text-muted-foreground">
-            Dive deeper into Nakel POS with our comprehensive guides and training.
+            Dive deeper into SBMS with our comprehensive guides and training.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link

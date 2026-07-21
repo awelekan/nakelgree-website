@@ -6,8 +6,8 @@ import { SectionHeading } from '@/components/section-heading'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
 
 export const metadata: Metadata = {
-  title: 'Nakel POS - Training Program',
-  description: 'Structured learning path with videos, exercises, quizzes, and certification. Become a Nakel POS expert.',
+  title: 'Service Based Management System App - Training Program',
+  description: 'Structured learning path for the Service Based Management System App with videos, exercises, quizzes, and certification. Learn how to use bookings, projects, invoices, and payments.',
 }
 
 const levels = [
@@ -70,14 +70,14 @@ const exercises = [
     ],
   },
   {
-    title: 'Exercise 2: Multi-Service Project',
+    title: 'Exercise 2: Multi-Client Project',
     time: '20 min',
-    description: 'Build a complex project with multiple services.',
+    description: 'Build a project with multiple clients attached to a single quote and manage shared billing.',
     steps: [
       'Create 5 services with different prices',
-      'Create a new client',
-      'Build a quote with all services',
-      'Accept and convert to booking',
+      'Create 2 or more clients',
+      'Build a quote and attach multiple clients',
+      'Accept and convert to project',
       'Record partial and remaining payments',
       'Verify full payment recorded',
     ],
@@ -136,7 +136,7 @@ const dailySchedule = [
     activities: [
       '📺 Watch advanced features video (5 min)',
       '📺 Watch finance deep dive video (6 min)',
-      '✍️ Complete Exercise 2: Multi-service project (20 min)',
+      '✍️ Complete Exercise 2: Multi-client project (20 min)',
       '📋 Take Quiz 2: Workflow (5 min)',
       '⏱️ Total: 36 minutes',
     ],
@@ -187,17 +187,16 @@ export default function TrainingPage() {
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
             <ArrowLeft className="size-4" />
-            Back to Nakel POS
+            Back to SBMS
           </Link>
         </div>
       </div>
 
       <PageHero
         eyebrow="Training Program"
-        title="Become a Nakel POS expert"
-        description="Structured learning path with videos, exercises, quizzes, and certification. Learn at your own pace and become confident using every feature."
+        title="Become a Service Based Management System expert"
+        description="Structured learning path with videos, exercises, quizzes, and certification. Learn at your own pace and become confident using every SBMS feature."
       />
-
       {/* Main Content */}
       <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         {/* Learning Levels */}
@@ -252,7 +251,7 @@ export default function TrainingPage() {
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-foreground">Recommended 4-Day Schedule</h2>
           <p className="mt-3 text-muted-foreground">
-            Complete this schedule to become proficient in all Nakel POS features.
+            Complete this schedule to become proficient in all SBMS features.
           </p>
 
           <RevealStagger className="mt-8 space-y-4">
@@ -346,7 +345,7 @@ export default function TrainingPage() {
 
         {/* Certification */}
         <section className="mb-16 rounded-2xl border border-primary/20 bg-primary/5 p-8">
-          <h2 className="text-2xl font-bold text-foreground">🎓 Nakel POS Certification</h2>
+          <h2 className="text-2xl font-bold text-foreground">🎓 SBMS Certification</h2>
           <p className="mt-3 text-muted-foreground">
             Complete all levels, pass all quizzes, and finish all exercises to earn your certification.
           </p>
@@ -365,7 +364,7 @@ export default function TrainingPage() {
               <p className="font-semibold text-foreground">Benefits:</p>
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <li>✓ Print certificate</li>
-                <li>✓ "Certified Nakel POS User" badge in profile</li>
+                <li>✓ "Certified SBMS User" badge in profile</li>
                 <li>✓ Share on LinkedIn</li>
                 <li>✓ Professional recognition</li>
               </ul>
@@ -401,7 +400,7 @@ export default function TrainingPage() {
               {
                 icon: '💼',
                 title: 'Practice with real data',
-                desc: 'After completing exercises, use Nakel POS with your actual clients and work.',
+                desc: 'After completing exercises, use the SBMS App with your actual clients and work.',
               },
               {
                 icon: '❓',
@@ -446,7 +445,7 @@ export default function TrainingPage() {
             <div>
               <p className="font-semibold text-foreground">Contact Support</p>
               <p className="mt-2 text-sm text-muted-foreground">
-                Email support@nakelpos.com for technical issues or personalized help.
+                Email support@sbms.nakelgreen.com.ng for technical issues or personalized help.
               </p>
             </div>
           </div>
@@ -456,7 +455,7 @@ export default function TrainingPage() {
         <div className="mt-12 text-center">
           <h3 className="text-2xl font-bold text-foreground">Ready to start?</h3>
           <p className="mt-2 text-muted-foreground">
-            Complete this training program to become a Nakel POS expert in just a few hours.
+            Complete this training program to become an SBMS expert in just a few hours.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
             <Link
@@ -475,7 +474,7 @@ export default function TrainingPage() {
               href="/nakel-pos"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-2 text-sm font-medium text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
             >
-              Back to Nakel POS
+              Back to SBMS
             </Link>
           </div>
         </div>

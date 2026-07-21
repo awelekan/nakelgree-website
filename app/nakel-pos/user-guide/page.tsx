@@ -6,8 +6,8 @@ import { SectionHeading } from '@/components/section-heading'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
 
 export const metadata: Metadata = {
-  title: 'Nakel POS - Complete User Guide',
-  description: 'Comprehensive reference guide for Nakel POS. Learn all features, modules, workflows, best practices, and troubleshooting.',
+  title: 'Service Based Management System App - Complete User Guide',
+  description: 'Comprehensive reference guide for the Service Based Management System App. Learn all features, modules, workflows, best practices, and troubleshooting.',
 }
 
 const modules = [
@@ -33,12 +33,17 @@ const modules = [
   },
   {
     title: 'Bookings',
-    description: 'Confirmed work orders. Track progress, schedules, and linked invoices.',
+    description: 'Confirmed work orders for a single client. Track progress, schedules, and linked invoices.',
     features: ['Create and manage bookings', 'Track progress status', 'Assign resources', 'Link documents'],
   },
   {
+    title: 'Projects',
+    description: 'Multi-client work packages. Link two or more clients to a single quote and manage collective delivery, billing, and invoices.',
+    features: ['Create multi-client projects', 'Attach multiple clients to one quote', 'Track shared scope and milestones', 'Generate consolidated invoices'],
+  },
+  {
     title: 'Invoices',
-    description: 'Auto-generated from bookings or created manually. Track payment status and send to clients.',
+    description: 'Auto-generated from bookings, projects, or created manually. Track payment status and send to clients.',
     features: ['Auto-created from bookings', 'Post to General Ledger', 'Send to clients', 'Track payment status'],
   },
   {
@@ -90,15 +95,14 @@ export default function UserGuidePage() {
             className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
           >
             <ArrowLeft className="size-4" />
-            Back to Nakel POS
+            Back to SBMS
           </Link>
         </div>
       </div>
 
       <PageHero
         eyebrow="Complete User Guide"
-        title="Full reference for all Nakel POS features"
-        description="Comprehensive documentation covering every module, workflow, and feature. Learn at your own pace."
+        title="Full reference for all SBMS features"
       />
 
       {/* Navigation */}
@@ -124,14 +128,14 @@ export default function UserGuidePage() {
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-foreground">Overview</h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Nakel POS is a business management platform designed to streamline your operations from quote to payment. 
-            Whether you're managing clients, creating proposals, tracking work, or analyzing finances — Nakel POS keeps 
-            everything organized in one intuitive platform.
+            The Service Based Management System App is a business management platform designed to streamline your operations from quote to payment. 
+            Whether you're managing clients, creating proposals, tracking work across bookings and projects, or analyzing finances — the SBMS App keeps 
+            everything organized in one intuitive platform. Access the app at https://sbms.nakelgreen.com.ng.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-xl border border-border bg-card p-6">
-              <p className="font-semibold text-foreground">Who uses Nakel POS?</p>
+              <p className="font-semibold text-foreground">Who uses SBMS?</p>
               <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
                 <li>• Entrepreneurs and solopreneurs</li>
                 <li>• Consultants and freelancers</li>
@@ -152,7 +156,7 @@ export default function UserGuidePage() {
         <section className="mb-16">
           <SectionHeading
             eyebrow="All Modules"
-            title="Understanding Nakel POS modules"
+            title="Understanding SBMS modules"
             description="Each module handles a specific part of your business workflow."
           />
 
@@ -188,13 +192,14 @@ export default function UserGuidePage() {
             <div className="rounded-2xl border border-border bg-card p-6">
               <h3 className="text-lg font-semibold text-foreground">Quote → Booking → Invoice</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                The most common workflow: propose work with a quote, get approval, convert to booking, and invoice automatically.
-              </p>
-              <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <p><strong>Step 1:</strong> Create quote with services and pricing</p>
-                <p><strong>Step 2:</strong> Change quote status to "Accepted" when client approves</p>
-                <p><strong>Step 3:</strong> Click "Convert to Booking" — system creates booking + invoice</p>
-                <p><strong>Step 4:</strong> Post invoice to General Ledger (if accounting is required)</p>
+                  The most common workflow: propose work with a quote, get approval, then convert to a booking or a project depending on whether the work involves one client or multiple clients. Invoices are generated automatically from the confirmed work.
+                </p>
+                <div className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  <p><strong>Step 1:</strong> Create quote with services and pricing</p>
+                  <p><strong>Step 2:</strong> Change quote status to "Accepted" when client approves</p>
+                  <p><strong>Step 3:</strong> Choose "Convert to Booking" for a single client, or "Convert to Project" when the quote includes two or more clients</p>
+                  <p><strong>Step 4:</strong> Review the booking or project details</p>
+                  <p><strong>Step 5:</strong> Post invoice to General Ledger (if accounting is required)</p>
               </div>
             </div>
 
@@ -231,7 +236,7 @@ export default function UserGuidePage() {
         <section className="mb-16">
           <SectionHeading
             eyebrow="Guidelines"
-            title="Best practices for Nakel POS"
+            title="Best practices for SBMS"
             description="Proven strategies for clean data and smooth workflows."
           />
 
@@ -329,7 +334,7 @@ export default function UserGuidePage() {
 
         {/* Next Steps CTA */}
         <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center">
-          <h3 className="text-xl font-bold text-foreground">Ready to master Nakel POS?</h3>
+          <h3 className="text-xl font-bold text-foreground">Ready to master SBMS?</h3>
           <p className="mt-2 text-muted-foreground">
             Take our structured training program with videos, exercises, and certification.
           </p>

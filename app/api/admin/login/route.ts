@@ -1,35 +1,29 @@
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-import { verifyStaffCredentials } from '@/lib/staff-auth'
+
+type LoginBody = { username?: string; password?: string }
 
 export async function POST(request: Request) {
   try {
-    const payload = await request.json()
-    const user = await verifyStaffCredentials(payload.email, payload.password)
+    const body: LoginBody = await request.json().catch(() => ({}))
+    const { username, password } = body
 
-    if (!user) {
-      return NextResponse.json(
-        { success: false, message: 'Invalid email or password.' },
-        { status: 401 },
-      )
+    const adminUser = process.env.ADMIN_USER
+    const adminPass = process.env.ADMIN_PASSWORD
+
+    if (!adminUser || !adminPass) {
+      return NextResponse.json({ error: 'Admin not configured' }, { status: 500 })
     }
 
-    const sessionValue = Buffer.from(JSON.stringify({ id: user.id, name: user.name, email: user.email, role: user.role })).toString('base64')
-    const cookieStore = await cookies()
-    cookieStore.set('staff_session', sessionValue, {
-      httpOnly: true,
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 60 * 60 * 24 * 7,
-      path: '/',
-    })
+    if (username === adminUser && password === adminPass) {
+      const token = Buffer.from(`${adminUser}:${adminPass}`).toString('base64')
+      const res = NextResponse.json({ ok: true })
+      const secure = process.env.NODE_ENV === 'production'
+      res.headers.set('Set-Cookie', `admin_auth=${token}; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=86400`)
+      return res
+    }
 
-    return NextResponse.json({ success: true, user })
-  } catch (error) {
-    console.error('Staff login failed', error)
-    return NextResponse.json(
-      { success: false, message: 'Unable to sign in right now.' },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+  } catch (err: any) {
+    return NextResponse.json({ error: err?.message || 'Unknown error' }, { status: 500 })
   }
 }

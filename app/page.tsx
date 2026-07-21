@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { HeroSection } from '@/components/home/hero-section'
+import { TrustedBy } from '@/components/trusted-by'
 import { StatsSection } from '@/components/home/stats-section'
 import { VerticalsSection } from '@/components/home/verticals-section'
 import { WhyChooseSection } from '@/components/home/why-choose-section'
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <TrustedBy />
       <StatsSection />
       <VerticalsSection />
       <WhyChooseSection />
@@ -28,7 +30,8 @@ export default function HomePage() {
                 Streamline Your Business with SBMS
               </h2>
               <p className="mt-4 text-lg text-muted-foreground">
-                Access the app at https://sbms.nakelgreen.com.ng. Manage quotes, bookings, projects, invoices, and payments in one unified platform.
+                Access the app at <button className="text-primary hover:underline"><a href="https://sbms.nakelgreen.com.ng" target="_blank" rel="noopener noreferrer">
+                Nakel-POS (SBMS)</a></button> Manage quotes, bookings, projects, invoices, and payments in one unified platform.
               </p>
               <ul className="mt-6 space-y-3">
                 <li className="flex items-center gap-3 text-muted-foreground">

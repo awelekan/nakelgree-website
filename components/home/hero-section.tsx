@@ -36,9 +36,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.05 }}
             className="mt-6 text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl"
           >
-            Learn.{' '}
-            <span className="text-primary">Work.</span>{' '}
-            Innovate.
+            Helping African businesses build smarter digital solutions with AI, Data & Software.
           </motion.h1>
 
           <motion.p
@@ -47,9 +45,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground"
           >
-            NakelGreen is a digital innovation hub where people gain in-demand
-            tech skills, build real products, and launch meaningful careers —
-            all within one thriving African ecosystem.
+            We design, build, and deploy secure digital products and data-driven tools that help organizations modernize, automate, and grow.
           </motion.p>
 
           <motion.div
@@ -59,17 +55,17 @@ export function HeroSection() {
             className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
             <Link
-              href="/programs"
+              href="/contact"
               className="group inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-sm transition-transform hover:scale-[1.03] active:scale-95"
             >
-              Start Learning
+              Start a Project
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
-              href="/community"
+              href="/about"
               className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-6 py-3.5 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
             >
-              Join Community
+              View Our Work
             </Link>
           </motion.div>
 

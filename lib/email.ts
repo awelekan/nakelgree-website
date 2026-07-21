@@ -13,6 +13,7 @@ const transporter = nodemailer.createTransport({
 })
 
 const COMPANY_EMAIL = process.env.COMPANY_EMAIL || 'm.awe@nakelgreen.com.ng'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || COMPANY_EMAIL
 const COMPANY_NAME = 'Nakelgreen'
 const COMPANY_WEBSITE = 'www.nakelgreen.com.ng'
 
@@ -151,6 +152,147 @@ This is an automated confirmation email. Please do not reply to this email addre
     subject: `We received your ${typeLabel} submission – ${COMPANY_NAME}`,
     html,
     text,
+  }
+}
+
+function getAdminNotificationTemplate(data: EmailTemplateData) {
+  const { recipientName, recipientEmail, formType, submission } = data
+  const typeLabels: Record<string, string> = {
+    program: 'Programs',
+    talent: 'Talent Acquisition',
+    community: 'Community Engagement',
+    innovation: 'Innovation Initiative',
+    general: 'General Inquiry',
+  }
+
+  const typeLabel = typeLabels[formType] || formType
+  const formattedSubmittedAt = new Date(submission.submittedAt).toLocaleString('en-NG', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
+
+  const submissionRows = Object.entries(submission)
+    .filter(([key, value]) => value && !['id', 'formType', 'submittedAt'].includes(key))
+    .map(([key, value]) => `<tr><td style="padding: 8px 12px; border: 1px solid #e5e7eb;"><strong>${key}</strong></td><td style="padding: 8px 12px; border: 1px solid #e5e7eb;">${String(value)}</td></tr>`)
+    .join('')
+
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; color: #333; line-height: 1.6; }
+        .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+        .header { border-bottom: 3px solid #2563eb; padding-bottom: 20px; margin-bottom: 30px; }
+        .header h1 { margin: 0; color: #1e40af; font-size: 24px; }
+        .content { background-color: #f9fafb; padding: 30px; border-radius: 8px; margin-bottom: 30px; }
+        .content h2 { color: #1e40af; margin-top: 0; }
+        .details-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .details-table th, .details-table td { padding: 12px; border: 1px solid #e5e7eb; text-align: left; }
+        .footer { text-align: center; color: #666; font-size: 12px; border-top: 1px solid #e5e7eb; padding-top: 20px; }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>${COMPANY_NAME} Notification</h1>
+            <p>New contact form submission received.</p>
+        </div>
+
+        <div class="content">
+            <h2>New ${typeLabel} Submission</h2>
+            <p><strong>Name:</strong> ${recipientName}</p>
+            <p><strong>Email:</strong> ${recipientEmail}</p>
+            <p><strong>Received:</strong> ${formattedSubmittedAt}</p>
+            <p><strong>Reference:</strong> ${submission.id}</p>
+
+            <table class="details-table">
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${submissionRows}
+              </tbody>
+            </table>
+
+            <p style="margin-top: 24px;">Review the submission and follow up with the contact as needed.</p>
+        </div>
+
+        <div class="footer">
+            <p><strong>${COMPANY_NAME}</strong></p>
+            <p>${COMPANY_WEBSITE} | <a href="mailto:${COMPANY_EMAIL}">${COMPANY_EMAIL}</a></p>
+        </div>
+    </div>
+</body>
+</html>
+  `
+
+  const textLines = [
+    `${COMPANY_NAME} Notification - New ${typeLabel} Submission`,
+    '',
+    `Name: ${recipientName}`,
+    `Email: ${recipientEmail}`,
+    `Received: ${formattedSubmittedAt}`,
+    `Reference: ${submission.id}`,
+    '',
+    'Submission details:',
+    ...Object.entries(submission)
+      .filter(([key, value]) => value && !['id', 'formType', 'submittedAt'].includes(key))
+      .map(([key, value]) => `${key}: ${String(value)}`),
+    '',
+    'Please review the submission and follow up as needed.',
+    '',
+    `${COMPANY_NAME}`,
+    `${COMPANY_WEBSITE}`,
+    `${COMPANY_EMAIL}`,
+  ]
+
+  return {
+    subject: `New ${typeLabel} submission received – ${COMPANY_NAME}`,
+    html,
+    text: textLines.join('\n'),
+  }
+}
+
+export async function sendAdminNotificationEmail(data: EmailTemplateData): Promise<boolean> {
+  if (!ADMIN_EMAIL) {
+    console.warn('Admin email is not configured. Skipping admin notification email.')
+    return false
+  }
+
+  try {
+    if (!process.env.EMAIL_HOST_USER || !process.env.EMAIL_HOST_PASSWORD) {
+      console.warn('Email service not configured. Skipping admin notification email.')
+      return false
+    }
+
+    const { subject, html, text } = getAdminNotificationTemplate(data)
+
+    const mailOptions = {
+      from: `${COMPANY_NAME} <${COMPANY_EMAIL}>`,
+      to: ADMIN_EMAIL,
+      subject,
+      html,
+      text,
+      replyTo: data.recipientEmail || COMPANY_EMAIL,
+    }
+
+    const info = await transporter.sendMail(mailOptions)
+    console.log('Admin notification email sent:', info.messageId)
+    return true
+  } catch (error) {
+    console.error('Failed to send admin notification email:', error)
+    return false
   }
 }
 

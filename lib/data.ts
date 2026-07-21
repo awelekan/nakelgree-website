@@ -334,21 +334,21 @@ export const testimonials: Testimonial[] = [
     role: 'Data Analyst alumnus',
     quote:
       'NakelGreen took me from zero experience to working on real products. The mentorship and community made all the difference in landing my first role.',
-    avatar: '/images/avatar-1.png',
+    avatar: '/images/avatar-.png',
   },
   {
     name: 'Tunde Adeyemi',
     role: 'Product Manager, alumnus',
     quote:
       'The projects were real and challenging. I built a portfolio I was proud of and had a clear path into the industry by the time I graduated.',
-    avatar: '/images/avatar-2.png',
+    avatar: '/images/avatar-.png',
   },
   {
-    name: 'Jolade Jumoke',
+    name: 'Jolaiya Jumoke',
     role: 'Data Analyst, alumna',
     quote:
       'Beyond the skills, the network I gained here is priceless. The co-working space and events kept me connected long after my cohort ended.',
-    avatar: '/images/avatar-3.png',
+    avatar: '/images/avatar-.png',
   },
 ]
 

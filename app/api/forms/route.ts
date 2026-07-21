@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { checkAntiBotProtection } from '@/lib/anti-bot'
 import { saveFormSubmission } from '@/lib/form-storage'
-import { sendConfirmationEmail } from '@/lib/email'
+import { sendConfirmationEmail, sendAdminNotificationEmail } from '@/lib/email'
 
 export async function POST(request: Request) {
   try {
@@ -17,15 +17,21 @@ export async function POST(request: Request) {
 
     const submission = await saveFormSubmission(payload)
 
-    // Send confirmation email asynchronously (don't wait for it)
+    // Notify the submitter and the admin
     if (submission.email && submission.name) {
-      sendConfirmationEmail({
+      const emailData = {
         recipientName: submission.name,
         recipientEmail: submission.email,
         formType: submission.formType,
         submission,
-      }).catch((error) => {
+      }
+
+      sendConfirmationEmail(emailData).catch((error) => {
         console.error('Failed to send confirmation email for submission', submission.id, error)
+      })
+
+      sendAdminNotificationEmail(emailData).catch((error) => {
+        console.error('Failed to send admin notification email for submission', submission.id, error)
       })
     }
 

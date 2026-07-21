@@ -15,5 +15,6 @@ export const navLinks = [
   { label: 'Innovation Hub', href: '/innovation' },
   { label: 'Talent', href: '/talent' },
   { label: 'Community', href: '/community' },
+  { label: 'Nakel POS', href: '/nakel-pos' },
   { label: 'Contact', href: '/contact' },
 ]

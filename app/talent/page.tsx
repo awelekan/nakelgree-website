@@ -4,6 +4,7 @@ import { ArrowRight, Briefcase, GraduationCap, Globe, FileText, Users, BadgeChec
 import { PageHero } from '@/components/page-hero'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
+import { ActivityForms } from '@/components/activity-forms'
 
 export const metadata: Metadata = {
   title: 'Talent & Careers',
@@ -178,6 +179,18 @@ export default function TalentPage() {
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div>
+            <h2 className="text-3xl font-bold text-foreground">Join the talent pool</h2>
+            <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Share your experience and availability so we can connect you with internships, placements, and global opportunities.
+            </p>
+          </div>
+          <ActivityForms formType="talent" />
         </div>
       </section>
     </>

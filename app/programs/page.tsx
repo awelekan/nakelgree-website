@@ -3,6 +3,7 @@ import { Check, Clock } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
 import { SectionHeading } from '@/components/section-heading'
 import { CTASection } from '@/components/cta-section'
+import { ActivityForms } from '@/components/activity-forms'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
 import { programs } from '@/lib/data'
 
@@ -116,6 +117,18 @@ export default function ProgramsPage() {
             </RevealItem>
           ))}
         </RevealStagger>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div>
+            <h2 className="text-3xl font-bold text-foreground">Apply for a program</h2>
+            <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Choose a track and tell us what you want to learn. We will follow up with the next steps for your application.
+            </p>
+          </div>
+          <ActivityForms formType="program" />
+        </div>
       </section>
 
       <CTASection

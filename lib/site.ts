@@ -3,8 +3,8 @@ export const siteConfig = {
   tagline: 'Learn. Work. Innovate.',
   description:
     'An African EdTech and innovation hub empowering people with digital skills.',
-  email: 'hello@nakelgreen.com',
-  phone: '+234 800 000 0000',
+  email: 'm.awe@nakelgreen.com.ng',
+  phone: '+234 907 706 3595',
   location: 'Lagos, Nigeria',
 }
 

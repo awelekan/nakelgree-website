@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { PageHero } from '@/components/page-hero'
 import { SectionHeading } from '@/components/section-heading'
 import { CTASection } from '@/components/cta-section'
+import { ActivityForms } from '@/components/activity-forms'
 import { Reveal, RevealStagger, RevealItem } from '@/components/reveal'
 
 export const metadata: Metadata = {
@@ -180,6 +181,18 @@ export default function CommunityPage() {
             </RevealItem>
           ))}
         </RevealStagger>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div>
+            <h2 className="text-3xl font-bold text-foreground">Register for community events</h2>
+            <p className="mt-3 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              Reserve your seat for our next hackathon, meetup, or training session and stay connected with the community.
+            </p>
+          </div>
+          <ActivityForms formType="community" />
+        </div>
       </section>
 
       <CTASection

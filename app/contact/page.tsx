@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { PageHero } from '@/components/page-hero'
-import { ContactForm } from '@/components/contact-form'
+import { ActivityForms } from '@/components/activity-forms'
 import { Reveal } from '@/components/reveal'
 import { siteConfig } from '@/lib/site'
 
@@ -84,7 +84,7 @@ export default function ContactPage() {
 
           <div className="lg:col-span-3">
             <Reveal delay={0.1}>
-              <ContactForm />
+              <ActivityForms formType="general" />
             </Reveal>
           </div>
         </div>

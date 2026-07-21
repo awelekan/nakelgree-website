@@ -135,10 +135,10 @@ export type Testimonial = {
 
 export const testimonials: Testimonial[] = [
   {
-    name: 'Amara Okafor',
-    role: 'Frontend Engineer, alumna',
+    name: 'Asamu Kudiratullahi',
+    role: 'Data Analyst alumnus',
     quote:
-      'NakelGreen took me from zero coding experience to shipping real products. The mentorship and community made all the difference in landing my first role.',
+      'NakelGreen took me from zero experience to working on real products. The mentorship and community made all the difference in landing my first role.',
     avatar: '/images/avatar-1.png',
   },
   {
@@ -149,7 +149,7 @@ export const testimonials: Testimonial[] = [
     avatar: '/images/avatar-2.png',
   },
   {
-    name: 'Ngozi Balogun',
+    name: 'Jolade Jumoke',
     role: 'Data Analyst, alumna',
     quote:
       'Beyond the skills, the network I gained here is priceless. The co-working space and events kept me connected long after my cohort ended.',

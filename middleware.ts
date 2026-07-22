@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { verifyStaffSession } from './lib/staff-auth'
 
-// Protect /admin routes with a simple cookie check.
+// Protect /admin routes with session verification.
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
@@ -9,20 +10,28 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  const adminUser = process.env.ADMIN_USER
-  const adminPass = process.env.ADMIN_PASSWORD
+  // Allow login and signup routes without authentication
+  if (pathname === '/admin/login' || pathname === '/admin/signup' || pathname === '/api/admin/login' || pathname === '/api/admin/signup') {
+    return NextResponse.next()
+  }
 
-  // If no admin user configured, allow access (development convenience)
-  if (!adminUser || !adminPass) return NextResponse.next()
+  const sessionCookie = request.cookies.get('staff_session')?.value
+  
+  if (!sessionCookie) {
+    // Redirect to login if not authenticated
+    const loginUrl = new URL('/admin/login', request.url)
+    return NextResponse.redirect(loginUrl)
+  }
 
-  const cookie = request.cookies.get('admin_auth')?.value || ''
-  const expected = Buffer.from(`${adminUser}:${adminPass}`).toString('base64')
+  // Verify the session is valid
+  const session = verifyStaffSession(sessionCookie)
+  if (!session) {
+    // Invalid session, redirect to login
+    const loginUrl = new URL('/admin/login', request.url)
+    return NextResponse.redirect(loginUrl)
+  }
 
-  if (cookie === expected) return NextResponse.next()
-
-  // Redirect to login if not authenticated
-  const loginUrl = new URL('/admin/login', request.url)
-  return NextResponse.redirect(loginUrl)
+  return NextResponse.next()
 }
 
 export const config = {

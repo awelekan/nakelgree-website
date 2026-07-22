@@ -25,8 +25,8 @@ export function LoginForm() {
     const data = await response.json()
     setLoading(false)
 
-    if (!response.ok || !data.success) {
-      setError(data.message || 'Unable to sign in right now.')
+    if (!response.ok || !data.ok) {
+      setError(data.error || 'Unable to sign in right now.')
       return
     }
 

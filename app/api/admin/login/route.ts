@@ -1,29 +1,30 @@
 import { NextResponse } from 'next/server'
+import { verifyStaffCredentials } from '@/lib/staff-auth'
 
-type LoginBody = { username?: string; password?: string }
+type LoginBody = { email?: string; password?: string }
 
 export async function POST(request: Request) {
   try {
     const body: LoginBody = await request.json().catch(() => ({}))
-    const { username, password } = body
+    const { email, password } = body
 
-    const adminUser = process.env.ADMIN_USER
-    const adminPass = process.env.ADMIN_PASSWORD
-
-    if (!adminUser || !adminPass) {
-      return NextResponse.json({ error: 'Admin not configured' }, { status: 500 })
+    if (!email || !password) {
+      return NextResponse.json({ error: 'Email and password required' }, { status: 400 })
     }
 
-    if (username === adminUser && password === adminPass) {
-      const token = Buffer.from(`${adminUser}:${adminPass}`).toString('base64')
-      const res = NextResponse.json({ ok: true })
-      const secure = process.env.NODE_ENV === 'production'
-      res.headers.set('Set-Cookie', `admin_auth=${token}; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=86400`)
-      return res
+    const user = await verifyStaffCredentials(email, password)
+
+    if (!user) {
+      return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
     }
 
-    return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 })
+    const sessionToken = Buffer.from(JSON.stringify(user)).toString('base64')
+    const res = NextResponse.json({ ok: true, success: true })
+    const secure = process.env.NODE_ENV === 'production'
+    res.headers.set('Set-Cookie', `staff_session=${sessionToken}; Path=/; HttpOnly; SameSite=Lax${secure ? '; Secure' : ''}; Max-Age=86400`)
+    return res
   } catch (err: any) {
-    return NextResponse.json({ error: err?.message || 'Unknown error' }, { status: 500 })
+    console.error('Login error:', err)
+    return NextResponse.json({ error: err?.message || 'Internal server error' }, { status: 500 })
   }
 }

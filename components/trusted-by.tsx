@@ -17,7 +17,7 @@ export function TrustedBy() {
       <div className="mt-6 grid grid-cols-2 gap-6 sm:grid-cols-4 items-center">
         {logos.map((l) => (
           <div key={l.name} className="flex items-center justify-center">
-            <img src={l.src} alt={l.name} className="h-12 w-auto object-contain" />
+            <img src={l.src} alt={l.name} className="h-12 w-auto object-contain" loading="lazy" />
           </div>
         ))}
       </div>

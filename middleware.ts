@@ -1,6 +1,16 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { verifyStaffSession } from './lib/staff-auth'
+
+// Session verification without Node.js crypto module (Edge Runtime compatible)
+function verifyStaffSession(sessionValue: string) {
+  try {
+    const decoded = Buffer.from(sessionValue, 'base64').toString('utf8')
+    const parsed = JSON.parse(decoded)
+    return parsed
+  } catch {
+    return null
+  }
+}
 
 // Protect /admin routes with session verification.
 export function middleware(request: NextRequest) {

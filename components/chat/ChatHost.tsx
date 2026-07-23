@@ -38,26 +38,9 @@ export default function ChatHost({ openOnLoad = false }: { openOnLoad?: boolean 
         throw new Error(body?.error || 'Chat API error')
       }
 
-      // stream response
-      const reader = res.body.getReader()
-      const decoder = new TextDecoder()
-      let assistantText = ''
-      setMessages((m) => [...m, { role: 'assistant', content: '' }])
-
-      while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-        const chunk = decoder.decode(value)
-        assistantText += chunk
-        setMessages((m) => {
-          const last = m[m.length - 1]
-          const updated = [...m.slice(0, -1), { ...(last || { role: 'assistant', content: '' }), content: assistantText }]
-          return updated
-        })
-      }
-
-      // finalize
-      streamController.current = null
+      const body = await res.json().catch(() => ({}))
+      const assistantText = body?.message || ''
+      setMessages((m) => [...m, { role: 'assistant', content: assistantText }])
     } catch (err: any) {
       console.error(err)
       setError(err?.message || 'An error occurred')
